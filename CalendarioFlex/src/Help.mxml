@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Panel color="#000000" 
+	   xmlns="http://www.adobe.com/2006/mxml" 
+	   xmlns:sjdControls="sjd.controls.*" 
+	   width="500" 
+	   height="500" 
+	   title="AJUDA!?">
+	<Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			[Bindable] public var helpText1:String =
+			"<b>N.º Semana:</b> 1\n" + 
+			"<b>N.º Mês:</b> 3\n" + 
+			"<b>N.º Ano:</b> 36";
+			
+			
+			[Bindable] public var helpText2:String = 
+			"<b>Ordinária:</b>Quando possui mais de 15 dias de diferença de outra reunião\n" +
+			"<b>ExtraOrdinária:</b>Quando possui menos de 15 dias de diferença de outra reunião";
+			
+			[Bindable] public var helpText3:String = "\n" +
+				"<B>Alto São Francisco</B>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Alto São Francisco\n" +
+				"Divinópolis\n\n" +
+				
+				"<b>Jequitinhonha</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Jequitinhonha\n" +
+				"Diamantina\n\n" +
+				
+				"<b>Leste Mineiro</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Leste Mineiro\n" +
+				"Governador Valadares\n\n" +
+				
+				"<b>Noroeste</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Noroeste de Minas\n" +
+				"Unaí\n\n" +
+				
+				"<b>Norte de Minas</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Norte de Minas\n" +
+				"Montes Claros\n\n" +
+				
+				"<b>Rio das Velhas</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Central Metropolitana\n" +
+				"Belo Horizonte\n\n" +
+				
+				"<b>Rio Paraopeba</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Central Metropolitana\n" +
+				"Betim\n\n" +
+				
+				"<b>Sul de Minas</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Sul de Minas\n" +
+				"Varginha\n\n" +
+				
+				"<b>Triângulo Mineiro</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Triângulo Mineiro\n" +
+				"Uberlândia\n\n" +
+				
+				"<b>Zona da Mata</b>\n" +
+				"Superintendência Regional de Meio Ambiente e Desenvolvimento Sustentável Zona da Mata\n" +
+				"Ubá";
+
+		]]>
+	</Script>
+	<sjdControls:AdvanceTabNavigator id="tab1" width="100%" height="100%" tabCloseEnable="true" tabDragEnable="true">
+		<VBox label="Estatística" 
+			  width="100%" 
+			  height="100%">
+			<TextArea editable="false" 
+					  fontSize="12" 
+					  width="100%" 
+					  height="100%" 
+					  htmlText="{helpText1}"/>
+		</VBox>
+		<VBox label="Classificação de Reunião"
+			  width="100%" 
+			  height="100%">
+			<TextArea editable="false" 
+					  fontSize="12"
+					  width="100%" 
+					  height="100%" 
+					  htmlText="{helpText2}"/>
+		</VBox>
+		<VBox label="Urc's"
+			  width="100%"
+			  height="100%">
+			<TextArea editable="false" 
+					  fontSize="12" 
+					  width="100%" 
+					  height="100%" 
+					  htmlText="{helpText3}"/>
+		</VBox>
+	</sjdControls:AdvanceTabNavigator>
+	
+	<ControlBar horizontalAlign="right">
+		<Button label="OK" click="PopUpManager.removePopUp(this);" />
+	</ControlBar>
+</Panel>

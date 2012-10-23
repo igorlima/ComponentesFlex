@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:app_code xmlns:local="*" 
+				xmlns="http://www.adobe.com/2006/mxml" 
+				xmlns:qs="qs.controls.*"   
+				xmlns:g="qs.graphics.*"
+				xmlns:qc="qs.containers.*"
+				creationComplete="load();" 
+				xmlns:ns1="qs.containers.*" 
+				xmlns:effects="qs.effects.*"
+				backgroundAlpha="0"
+				>
+	
+	<Style source="calendar.css" />
+	<Style source="styles.css" />
+	<Script source="app_imports.as" />
+	
+	<ApplicationControlBar dock="true" direction="vertical">
+	</ApplicationControlBar>
+	
+	<HBox id="mainbox" width="100%" height="100%" >		
+		<VBox>			
+			<VBox minWidth="250" horizontalAlign="center" styleName="calendarsContainer" >			
+				<HBox>
+					<Button label="&lt;&lt;" click="cal.previous();" />
+					<Button label="hoje" click="goToToday();" />
+					<Button label="&gt;&gt;" click="cal.next();" />
+				</HBox>
+				<Label styleName="headerLabel" text="exibindo: {formatDate(cal.range.start)}" />			
+				<ToggleButtonBar dataProvider="{displayOptions}" selectedIndex="0"  id="displayMode" itemClick="displayModeItemClickHandler()"/>				
+				<CheckBox label="animação" selected="false" id="animated" visible="false" />							
+			</VBox>
+			<VBox minWidth="250" horizontalAlign="center" styleName="calendarsContainer" >			
+				<local:DataBox width="100%" dataProvider="{calSet.calendars}">
+					<local:itemRenderer>
+						<Component> 
+							<local:CalListEntry removeCalendar="outerDocument.removeCalendar(data)" />
+						</Component>
+					</local:itemRenderer>
+				</local:DataBox>
+				<HRule width="100%" />
+				<HBox horizontalAlign="right" width="100%">
+					<Button visible="true" click="addCalendar();" label="Agendar nova reunião..." minWidth="20" minHeight="20" height="20" />
+				</HBox>		
+				<DateChooser id="chooser" 
+							 change="updateRange()" 
+							 allowDisjointSelection="false" 
+							 allowMultipleSelection="true" 
+							 width="100%" 
+							 monthNames="['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']"
+							 dayNames="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
+							 >
+					<selectedDate>
+						<Date month="2" date="20" fullYear="2011" />
+					</selectedDate>
+				</DateChooser>
+				<Button width="100%" label="MAIS" click="showHelp();" />
+				<Button id="btVoltar" width="100%" label="VOLTAR" click="voltar()" />
+			</VBox>
+			<local:Busy minWidth="250" id="busy" />
+		</VBox>
+		<qs:CalendarDisplay id="cal" 
+							width="100%"
+							height="100%"
+							headerClick="headerClickHandler(event.dateTime)"
+							dayClick="dayClickHandler(event.dateTime)"
+							displayModeChange="displayModeHandler()"
+							animated="{animated.selected}"
+							change="rangeChangeHandler()" 
+							itemAdd="addCalendarDialog(event.event.start, event.event.end, event.event.allDay)" 
+							itemEdit="editCalendarDialog(event.event)" />
+	</HBox>
+	
+</local:app_code>
